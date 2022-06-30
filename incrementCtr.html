@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Increment Counter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+
+    }
+    body{
+        background-color: rgb(48, 48, 239);
+        display: flex;
+        place-items: center;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .counter-container{
+        color: white;
+        padding: 15vh;
+        margin-top: 10vh;
+        
+    }
+    .fas{
+        margin: 4vh;
+    }
+    .counter{
+        margin: 2vh;
+        color: orange;
+        font-size: 12vh;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: 900;
+    }
+    span{
+        font-weight: 400;
+        font-size: 35px;
+    }
+</style>
+<body>
+    <div class="counter-container">
+        <i class="fas fa-mug-hot fa-5x"></i>
+        <div class="counter" data-target="4000" ></div>
+        <span>Project completed</span>
+    </div>
+    <div class="counter-container">
+        <i class="fas fa-users fa-5x"></i>
+        <div class="counter" data-target="15000" ></div>
+        <span>Happy Clients</span>
+    </div>
+    <div class="counter-container">
+        <i class="fas fa-tasks fa-5x"></i>
+        <div class="counter" data-target="400" ></div>
+        <span>Ongoing Projects</span>
+    </div>
+    <script>
+        const counters = document.querySelectorAll('.counter');
+        
+        counters.forEach((counter)=>{
+            // console.log(counter);
+            counter.innerHTML = 0;
+
+            const updateCounter =  () =>{
+                const targetCount = +counter.getAttribute('data-target');
+                // console.log(targetCount);
+
+                const startingCount = Number(counter.innerHTML);
+
+                const incr = targetCount/100;
+
+                if(startingCount<targetCount){
+                    counter.innerHTML=`${Math.round(startingCount + incr)}`;
+                    setTimeout(updateCounter,10)
+                }else{
+                    counter.innerHTML=targetCount;
+                }
+
+            }
+            updateCounter();
+        })
+
+    </script>
+</body>
+</html>
